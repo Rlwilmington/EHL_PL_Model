@@ -30,7 +30,7 @@ normalize = 0;
 %Set Starting Parameters
 
 UB = [6,  700,  0.8,  100, 100,   1, 0.05, 0.05]; %define fit bounds
-LB = [0.3,  180,  0.4,  0,  0, 0, -0.01, -0.01];
+LB = [0.3,  280,  0.4,  0,  0, 0, -0.01, -0.01];
 deltaB = UB-LB;
 
 
@@ -127,7 +127,7 @@ tic
 
 minimizer = @(par) PL_resid(par,const,xdata,ydata,f1,f2,f3,f4,f5); %define single-var residual function to be minimized
 
-fitops = optimoptions('lsqnonlin','maxfunevals',maxevals,'TolFun',1e-6,'TolX',1e-6,...
+fitops = optimoptions('lsqnonlin','maxfunevals',maxevals,'TolFun',1e-8,'TolX',1e-8,...
     'disp','iter-detailed','Algorithm','trust-region-reflective');
 
 %options.Algorithm = 'sqp'; %'active-set'; %'interior-point'; %'levenberg-marquardt'; %select other algorithm

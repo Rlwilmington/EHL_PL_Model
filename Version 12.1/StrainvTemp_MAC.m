@@ -8,7 +8,7 @@ load LatticeExpVSPower.mat LatticeExpVSPower
 load TempVsPower.mat TempVsPower
 
 
-
+fitorder = 1;
 
 %%
 
@@ -42,7 +42,7 @@ energyOffset.G_VB = polyval(energyCoeff(:,3),energyOffset.Strain);
 
 M = table2array(energyOffset);
 
-f3 = polyfit(M(:,1),M(:,4),1);
+f3 = polyfit(M(:,1),M(:,4),fitorder);
 
 %%
 
@@ -61,11 +61,11 @@ massInterp.G_VB = interp1(masses.Strain,masses.G_VB,latticeExp,'linear')';
 
 %fit2 = fit(masses.Strain,masses.G_VB,g,'Start',[3, 0.5, 0]); %effective mass G-band holes (m_h_G)
 %f2 = [fit2.a, fit2.b, fit2.c];
-f2 = polyfit(masses.Strain,masses.G_VB,1);
+f2 = polyfit(masses.Strain,masses.G_VB,fitorder);
 
-f4 = polyfit(masses.Strain,masses.K_VBL,1); %effective mass K-band holes (m_h_K)
+f4 = polyfit(masses.Strain,masses.K_VBL,fitorder); %effective mass K-band holes (m_h_K)
 
-f5 = polyfit(masses.Strain,masses.K_CBL,1); %effective mass K-band electrons (m_e_K)
+f5 = polyfit(masses.Strain,masses.K_CBL,fitorder); %effective mass K-band electrons (m_e_K)
 
 
 %% Plots

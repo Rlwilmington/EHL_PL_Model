@@ -14,7 +14,7 @@ degen_h_K = 2;
 degen_h_G = 1;
 
 E_opt = 1.89; %eV
-E_bind = 0.43; %eV, note that exciton binding energy estimates vary 0.4-0.8eV (0.53 suggested by Robert Younts, 0.42 by Bataller et al)
+E_bind = 0.421; %eV, note that exciton binding energy estimates vary 0.4-0.8eV (0.53 suggested by Robert Younts, 0.42 by Bataller et al)
 
 startfile = 1;
 
@@ -50,7 +50,7 @@ Myfit = zeros(21,401);
 for i = startfile:21
     filenum = i;
     filestring = num2str(filenum);
-    filename = strcat('montecarloerrorsaveVersion12.8_April1720_file',filestring,'.mat');
+    filename = strcat('montecarloerrorsaveVersion12.11_April1720_file',filestring,'.mat');
 
     S = load(filename);
     
@@ -181,7 +181,7 @@ annotation('textbox',dim,'String',str,'FitBoxToText','on','FontSize',20,'EdgeCol
 hold off
 
 
-saveas(gcf,'fig_fitwith&withoutL_v8.png')
+saveas(gcf,'fig_fitwith&withoutL_v11.png')
 
 
 %%
@@ -232,7 +232,7 @@ str = {'(c)'};
 annotation('textbox',dim,'String',str,'FitBoxToText','on','FontSize',20,'EdgeColor','none');
 hold off
 
-saveas(gcf,'fig_pars_v8.png')
+saveas(gcf,'fig_pars_v11.png')
 
 %%
 
@@ -293,7 +293,7 @@ dim = [0.507 0.39 0.1 0.1];
 str = {'(d)'};
 annotation('textbox',dim,'String',str,'FitBoxToText','on','FontSize',20,'EdgeColor','none');
 
-saveas(gcf,'fig_alphabetaCD_v8.png')
+saveas(gcf,'fig_alphabetaCD_v11.png')
 
 
 
@@ -354,7 +354,7 @@ legend('Electron Ef','Hole Ef','Location','East')
 xlabel('Power Density (kW/cm^2)')
 ylabel('Energy (eV)')
 hold off
-saveas(gcf,'fermilevelvfluence_v8.png')
+saveas(gcf,'fermilevelvfluence_v11.png')
 
 %%
 
@@ -400,7 +400,7 @@ annotation('textbox',dim,'String',str,'FitBoxToText','on','FontSize',20,'EdgeCol
 hold off
 
 
-saveas(gcf,'fig_npervalley+dipole_v8.png')
+saveas(gcf,'fig_npervalley+dipole_v11.png')
 
 %%
 
@@ -447,8 +447,8 @@ endfile = 15;
 x = allentries(startfile:endfile,2);
 z = allentries(startfile:endfile,4);
 
-a_bohr = 6.5e-8;
-E_bind = 0.43;
+a_bohr = 6.02e-8;
+E_bind = 0.421;
 bgr = @(n) 3.1*(((n*1e13).*a_bohr^2).^(1/3)).*(E_bind);
 nspace = linspace(2.5,5,1000);
 bgrvals = bgr(nspace);
@@ -474,7 +474,7 @@ legend('Fit Results','Predicted BGR vs Charge Carrier Density','Location','South
 set(gca,'FontSize',fontsize)
 hold off
 
-saveas(gcf,'fig_nvsBGR_v8.png')
+saveas(gcf,'fig_nvsBGR_v11.png')
 
 
 %%
@@ -485,7 +485,7 @@ yprime = -3.1*xprime.^(1/3);
 y2prime = -2.8*xprime.^(1/3);
 y3prime = -2.5*xprime.^(1/3);
 
-E0 = 0.43; %30.1588;
+E0 = 0.421; %30.1588;
 
 na_0squared = x*10^13*a_bohr^2;
 BGR_norm = -z./E0;

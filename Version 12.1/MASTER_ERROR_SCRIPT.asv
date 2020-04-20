@@ -2,7 +2,7 @@
 clear all
 close all
 
-filenum = 21;
+filenum = 12;
 
 
 LSQ_FIT_MAIN_SCRIPT %get fit X
@@ -42,11 +42,10 @@ save(filename)
 
 %%
 
-
-global i finish
-
 i = 1;
 finish = 0;
+
+global i 
 
 while finish == 0
     
@@ -54,24 +53,23 @@ while finish == 0
 
         %list = fliplr(1:21);
         filenum = i;
-        
-        filestring = num2str(filenum);
-        filename = strcat('montecarloerrorsaveVersion12.11_April1720_file',filestring,'.mat');
-        S = load(filename);
-        
-        %LSQ_FIT_MAIN_SCRIPT %get fit X
-        
-        if S.RESNORM < 0.10
+
+        LSQ_FIT_MAIN_SCRIPT %get fit X
+        if RESNORM < 0.10
         
 
-            Monte_Carlo_Error %get X_err 250 trials
+        %Monte_Carlo_Error %get X_err 250 trials
+
+            filestring = num2str(filenum);
+            filename = strcat('montecarloerrorsaveVersion12.11_April1720_file',filestring,'.mat');
+
             save(filename)
         
             i = i+1;
             
         end
            
-        clearvars -except i finish
+        clearvars -except i
         close all
         
         if i > 21
