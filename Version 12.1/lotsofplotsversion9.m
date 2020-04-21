@@ -1,4 +1,6 @@
 %%
+
+%MOST RECENT PLOTTER, INCLUDES ERRORBARS AND ROBERT CHANGES
 fontsize = 16;
 
 [f1, f2, f3, f4, f5] = StrainvTemp_MAC();
@@ -16,24 +18,24 @@ degen_h_G = 1;
 E_opt = 1.89; %eV
 E_bind = 0.421; %eV, note that exciton binding energy estimates vary 0.4-0.8eV (0.53 suggested by Robert Younts, 0.42 by Bataller et al)
 
-startfile = 6;
+startfile = 8;
 
-E_off = [
-    564.453125, -0.05789473684210525
-    818.359375, -0.050375939849624074
-    1056.6406249999998, -0.054385964912280704
-    1306.6406249999998, -0.051629072681704274
-    1541.0156249999998, -0.04160401002506267
-    1791.0156249999998, -0.013533834586466176
-    2037.1093749999993, -0.010526315789473675
-    2275.390624999999, -0.0027568922305764437
-    2517.578125, 0.01177944862155389
-    2763.671874999999, 0.026315789473684216
-    3009.765624999999, 0.03834586466165414
-    3251.953124999999, 0.03007518796992481
-    3501.953124999999, 0.047368421052631574
-    3736.328124999999, 0.047368421052631574
-    3986.328124999999, 0.057393483709273184];
+% E_off = [
+%     564.453125, -0.05789473684210525
+%     818.359375, -0.050375939849624074
+%     1056.6406249999998, -0.054385964912280704
+%     1306.6406249999998, -0.051629072681704274
+%     1541.0156249999998, -0.04160401002506267
+%     1791.0156249999998, -0.013533834586466176
+%     2037.1093749999993, -0.010526315789473675
+%     2275.390624999999, -0.0027568922305764437
+%     2517.578125, 0.01177944862155389
+%     2763.671874999999, 0.026315789473684216
+%     3009.765624999999, 0.03834586466165414
+%     3251.953124999999, 0.03007518796992481
+%     3501.953124999999, 0.047368421052631574
+%     3736.328124999999, 0.047368421052631574
+%     3986.328124999999, 0.057393483709273184];
 
 file_list = 1:15;
 
@@ -50,7 +52,7 @@ Myfit = zeros(21,401);
 for i = startfile:21
     filenum = i;
     filestring = num2str(filenum);
-    filename = strcat('montecarloerrorsaveVersion12.1_April1720_file',filestring,'.mat');
+    filename = strcat('montecarloerrorsaveVersion12.11_April1720_file',filestring,'.mat');
 
     S = load(filename);
     
@@ -78,8 +80,8 @@ for i = startfile:21
     Mydata(i,:) = Mydata(i,:) + 0.25*(i-startfile);
 end
 
-power_vec = (1e-3*interp1(file_list,E_off(:,1),1:21,'linear','extrap').');
-
+%power_vec = (1e-3*interp1(file_list,E_off(:,1),1:21,'linear','extrap').');
+power_vec = 1e-3*(570.302+(0:20).*243.621).';
 
 %%
 
@@ -308,15 +310,15 @@ for i = startfile:21
     n = allentries(i,2);
     T = allentries(i,3);
     
-    if T > 293
+    if T > 294
         strain = polyval(f1,T);
     else
-        strain = 0.6934;
+        strain = polyval(f1,294);
     end
     E_off_h = polyval(f3,strain); %eV
     m_e_K = polyval(f5,strain)*m0; %effective masses (highest fluence)
     m_h_K = polyval(f4,strain)*m0;
-    m_h_G = (f2(1)*exp(-f2(2)*strain) + f2(3))*m0; 
+    m_h_G = polyval(f2,strain)*m0; 
     g_e_K = (degen_e_K*m_e_K)/(pi*hbar^2); %density of states
     g_h_K = (degen_h_K*m_h_K)/(pi*hbar^2);
     g_h_G = (degen_h_G*m_h_G)/(pi*hbar^2);

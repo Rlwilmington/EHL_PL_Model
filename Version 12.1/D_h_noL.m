@@ -7,15 +7,15 @@ k_b = const(3);
 hbar = const(4);
 m0 = const(5);
 
-if T > 293
+if T > 294
     strain = polyval(f1,T);
 else
-    strain = 0.6934;
+    strain = polyval(f1,294);
 end
 
 E_off_h = polyval(f3,strain); %eV
 m_h_K = polyval(f4,strain)*m0;
-m_h_G = (f2(1)*exp(-f2(2)*strain) + f2(3))*m0;
+m_h_G = polyval(f2,strain)*m0;
 g_h_K = (degen_h_K*m_h_K)/(pi*hbar^2);
 g_h_G = (degen_h_G*m_h_G)/(pi*hbar^2);
 

@@ -7,8 +7,8 @@ cutoff_index = 0; %index left cutoff for data, zero for no cutoff
 find_fit = 0;
 skip = 1; %only use every __ data points to speed up fit
 maxevals = 700; %max function evaluations allowed for LSQ fit
-trials = 2; %false datasets created for error estimation
-bins = 1; %histogram bins for parameter error estimates
+trials = 250; %false datasets created for error estimation
+bins = 60; %histogram bins for parameter error estimates
 start = 1;
 
 %Set Starting Parameters

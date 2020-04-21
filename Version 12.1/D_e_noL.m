@@ -6,10 +6,10 @@ k_b = const(3);
 hbar = const(4);
 m0 = const(5);
 
-if T > 293
+if T > 294
     strain = polyval(f1,T);
 else
-    strain = 0.6934;
+    strain = polyval(f1,294);
 end
 
 m_e_K = polyval(f5,strain)*m0; %effective masses (highest fluence)

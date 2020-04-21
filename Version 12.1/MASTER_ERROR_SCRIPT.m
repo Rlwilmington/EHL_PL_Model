@@ -2,7 +2,7 @@
 clear all
 close all
 
-filenum = 21;
+filenum = 14;
 
 
 LSQ_FIT_MAIN_SCRIPT %get fit X
@@ -41,41 +41,52 @@ save(filename)
 % end
 
 %%
+tic
 
+global ticker finish filenum
 
-global i finish
-
-i = 1;
+ticker = 6;
 finish = 0;
 
 while finish == 0
     
 
-
-        %list = fliplr(1:21);
-        filenum = i;
+        disp('Starting')
+        list = fliplr(1:21);
+        filenum = list(ticker);
         
         filestring = num2str(filenum);
         filename = strcat('montecarloerrorsaveVersion12.11_April1720_file',filestring,'.mat');
-        S = load(filename);
+        S2 = load(filename);
         
+        disp('Loaded File')
+        
+        X = S2.X;
+        disp(X)
+        disp(S2.RESNORM)
         %LSQ_FIT_MAIN_SCRIPT %get fit X
         
-        if S.RESNORM < 0.10
-        
-
-            Monte_Carlo_Error %get X_err 250 trials
-            save(filename)
-        
-            i = i+1;
+        if S2.RESNORM < 0.10
+            
+            disp('Valid X')
+            try
+                Monte_Carlo_Error %get X_err 250 trials
+                save(filename)
+            catch
+                disp('Error')
+            end
+            ticker = ticker+1;
+            disp('Moving to Next File...')
             
         end
            
-        clearvars -except i finish
+        clearvars -except ticker finish
         close all
         
-        if i > 21
+        if ticker > 21
             finish = 1;
         end
 
 end
+
+toc

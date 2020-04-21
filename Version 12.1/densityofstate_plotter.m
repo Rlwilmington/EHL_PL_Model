@@ -1,6 +1,25 @@
+%% Set Up Model Fit
 
-X = [4.7037  599.0450    0.6590    9.0826    1.1463    0.5171   -0.0000    0.0058];
+degen_e_K = 2; %band degeneracy
+degen_h_K = 2;
+degen_h_G = 1;
+
+m0_oldunits = 1e6*0.510998950; %eV/c^2
+c = 299792458; %m/s
+m0 = (1/c^2)*m0_oldunits;
+hbar = 6.582119569e-16; %eV*s
+k_b = 8.617333262145e-5; %eV/K
+
+E_opt = 1.89; %eV
+E_bind = 0.421; %eV, note that exciton binding energy estimates vary 0.4-0.8eV (0.53 suggested by Robert Younts, 0.42 by Bataller et al)
+
+const = [E_opt, E_bind, k_b, hbar, m0]; %constants necessary for fit model construction
+
+%%
+X = [4.8806  613.3210    0.6497    8.6656    1.2369    0.4784   -0.0000   -0.0036];
 par = X;
+
+[f1, f2, f3, f4, f5] = StrainvTemp_MAC();
 
 n = 1e13*par(1); %already converted to 1/m^2
 T = par(2);
@@ -14,10 +33,10 @@ D = par(8);
 step = 0.005;
 xfit_g = (-5:step:5).'; %end at 4eV, though this choice should not make a difference
 
-if X(2) > 293
+if X(2) > 294
     strain = polyval(f1,X(2));
 else
-    strain = 0.6934;
+    strain = polyval(f1,294);
 end
 
 
@@ -25,12 +44,19 @@ disp('Sample Strain (Lattice Expansion)')
 disp(strain)
 E_off_h = polyval(f3,strain); %eV
 
-%% Electrons
+%% Electrons/Holes Fermi Levels
+m_e_K = polyval(f5,strain)*m0; %effective masses (highest fluence)
+m_h_K = polyval(f4,strain)*m0;
+m_h_G = polyval(f2,strain)*m0;
+g_h_K = (degen_h_K*m_h_K)/(pi*hbar^2);
+g_h_G = (degen_h_G*m_h_G)/(pi*hbar^2);
+g_e_K = (degen_e_K*m_e_K)/(pi*hbar^2); %density of states
+
+E_fermi_e = F1(X(2),X(1).*1e13,const,g_e_K);
+E_fermi_h = F2(X(2),X(1).*1e13,const,g_h_K,g_h_G,E_off_h);
 
 
 
-
-%% Holes
 
 
 

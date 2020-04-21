@@ -78,8 +78,8 @@ for i = startfile:21
     Mydata(i,:) = Mydata(i,:) + 0.25*(i-startfile);
 end
 
-power_vec = (1e-3*interp1(file_list,E_off(:,1),1:21,'linear','extrap').');
-
+%power_vec = (1e-3*interp1(file_list,E_off(:,1),1:21,'linear','extrap').');
+power_vec = 1e-3*(570.302+(0:20).*243.621).';
 
 %%
 
