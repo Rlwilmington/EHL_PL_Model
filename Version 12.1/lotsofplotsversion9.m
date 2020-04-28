@@ -489,7 +489,11 @@ BGR_norm = -z./E0;
 
 semilogx(xprime,yprime,'-',xprime,y2prime,'-',xprime,y3prime,'-',na_0squared,BGR_norm,'*')
 legend('3.1','2.8','2.5','data')
+ylabel('E_{BGR}/E_{bind}')
+xlabel('na_{b}^2')
 ylim([-2 0])
+set(gca,'FontSize',fontsize)
+
 
 
 

@@ -168,7 +168,7 @@ res_y = PL_resid(X,const,xdata,ydata,f1,f2,f3,f4,f5);
 % plot(xdata,res_y,'*');
 % plot([xdata(1), xdata(end)],[0 0],'k-')
 % hold off
-
+%%
 J = JACOBIAN;
 J = full(J);
 dof = length(xdata) - length(X);
@@ -176,6 +176,8 @@ mse = (1/dof)*sum(res_y.^2); %variance of residuals (assuming ~uniform)
 cov = (J.'*J)*mse;
 SE = sqrt(diag(cov));
 CI = nlparci(X,res_y,'covar',cov);
+
+%%
 
 disp('10^13 Charge Carrier Density per Volume:')
 disp(X(1))
