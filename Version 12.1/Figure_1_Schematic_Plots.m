@@ -1,4 +1,16 @@
+%%
 
+load LatticeExpVSPower.mat LatticeExpVSPower 
+load TempVsPower.mat TempVsPower
+
+
+%% Calibrate Sample Temperature to Percent Strain Using Raman Data
+
+LatticeExpVSPower(:,1) = flipud(LatticeExpVSPower(:,1));
+strain_inset = LatticeExpVSPower(1:6,1);
+temp_inset = TempVsPower(1:6,1);
+
+%%
 
 clear fit M1 M2
 
@@ -135,20 +147,13 @@ pad = 0.06;
 
 
 
+figure('Renderer', 'painters', 'Position', [10 10 1200 600])
+set(gcf,'defaultAxesFontName','Arial','defaultTextFontName','Arial')
+axes('Position',[0.001 0.001 0.498 0.998],'xtick',[],'ytick',[],'box','on','handlevisibility','off')
+axes('Position',[0.5 0.001 0.498 0.998],'xtick',[],'ytick',[],'box','on','handlevisibility','off')
 
-figure('Renderer', 'painters', 'Position', [10 10 1400 450])
-%figure('units','inch','position',[0,0,3.3,2*3.3/3]);
 
-axes('Position',[0.001 0.001 0.333 0.998],'xtick',[],'ytick',[],'box','on','handlevisibility','off')
-axes('Position',[0.333 0.001 0.333 0.998],'xtick',[],'ytick',[],'box','on','handlevisibility','off')
-axes('Position',[0.666 0.001 0.333 0.998],'xtick',[],'ytick',[],'box','on','handlevisibility','off')
-
-left_color = [0 0 0];
-right_color = [0 0 0];
-ax_height_start = 0.18;
-ax_height = 0.77;
-
-h1 = axes('Position',[0.05 ax_height_start 0.255 ax_height]);
+h1 = axes('Position',[0.07 0.13 0.38 0.80]);
 set(gca,'FontSize',fontsize,'CLim',[power_vec(startfile) power_vec(21)])
 
 m_color = (256-1)/(power_vec(21)-power_vec(1));
@@ -182,55 +187,40 @@ c = colorbar(gca);
 c.Label.String = 'Power Density (kW/cm^2)';
 hold off
 
-
-h3 = axes('Position',[0.72 ax_height_start 0.26 ax_height]);
+h2 = axes('Position',[0.57 0.13 0.4 0.80]);
 set(gca,'FontSize',fontsize)
 hold on
-plot(h3,M(:,1),M(:,2),'-o','LineWidth',2);
-plot(h3,M(:,1),M(:,3),'-^','LineWidth',2);
-plot(h3,M(:,1),M(:,2) - M(:,4),'-s','LineWidth',2);
-plot(h3,M(:,1),M(:,3) - M(:,4),'-d','LineWidth',2);
+plot(h2,M(:,1),M(:,2),'-o','LineWidth',2);
+plot(h2,M(:,1),M(:,3),'-^','LineWidth',2);
+plot(h2,M(:,1),M(:,2) - M(:,4),'-d','LineWidth',2);
+plot(h2,M(:,1),M(:,3) - M(:,4),'-s','LineWidth',2);
 ylabel('Energy Gap (eV)')
 xlabel('Sample Strain (%)')
-legend('K(VB)-K(CB)','K(VB)-Q(CB)','\Gamma(VB)-K(CB)','\Gamma(VB)-Q(CB)','Location','SouthWest')
+legend('K(VB)-K(CB)','K(VB)-Q(CB)','\Gamma(VB)-K(CB)','\Gamma(VB)-Q(CB)','Location','SouthWest','FontSize',12)
 xlim([low-pad high+pad])
-ylim([1.35, 2.0])
+ylim([1.35, 2.17])
 dim = [0.007 0.88 0.1 0.1];
 str = {'(a)'};
 annotation('textbox',dim,'String',str,'FitBoxToText','on','FontSize',20,'EdgeColor','none');
-dim = [0.340 0.88 0.1 0.1];
+dim = [0.507 0.88 0.1 0.1];
 str = {'(b)'};
-annotation('textbox',dim,'String',str,'FitBoxToText','on','FontSize',20,'EdgeColor','none');
-dim = [0.673 0.88 0.1 0.1];
-str = {'(c)'};
 annotation('textbox',dim,'String',str,'FitBoxToText','on','FontSize',20,'EdgeColor','none');
 hold off
 
 
-set(gcf,'defaultAxesColorOrder',[left_color; right_color]);
-
-h2 = axes('Position',[0.40 ax_height_start+0.01 0.20 ax_height]);
-set(gca,'FontSize',fontsize)
-range = 9:15;
-ylim_temp = [250, 650];
-ylim_strain = polyval(f1,ylim_temp);
-strain_list = polyval(f1,allentries(range,3));
-yyaxis left
-plot(power_vec(range),allentries(range,3),'-bo','LineWidth',2);
-ylim(ylim_temp)
-xlim([2.3, 4.2])
+h3 = axes('Position',[0.78 0.785 0.2 0.19]);
+set(gca,'FontSize',12,'box','on')
+T_list = linspace(260,620,10);
+hold on
+plot(polyval(f1,T_list),T_list,'--')
+plot(strain_inset, temp_inset, '*')
 ylabel('Temperature (K)')
-
-yyaxis right
-plot(power_vec(range),strain_list,'-bo','LineWidth',1);
-ylim(ylim_strain)
-ylabel('Strain (%)')
-xlabel('Power Density (kW/cm^2)')
-
-
-saveas(gcf,'fig_fig1.png')
-
-%%
+xlabel('Sample Strain (%)')
+ylim([250 620])
+xlim([0.5 2.0])
+legend('Exp.','Fit','Location','NorthWest')
+hold off
 
 
-
+%saveas(gcf,'fig_fig1.png')
+saveas(gcf,'fig_fig1','svg')

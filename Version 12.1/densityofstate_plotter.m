@@ -90,40 +90,57 @@ xfit_g_e2 = E_opt + flipud(xfit_g);
 xfit_g_h1 = -E_off_h + xfit_g;
 xfit_g_h2 = -E_off_h + xfit_g;
 
-u1_vec(u1_vec < 1e15) = -1;
-v1_vec(v1_vec < 1e15) = -1;
-u2(u2 < 1e15) = -1;
-v2(v2 < 1e15) = -1;
+u1_vec(u1_vec < 1e16) = -1e18;
+v1_vec(v1_vec < 1e16) = -1e18;
+u2(u2 < 1e16) = -1e18;
+v2(v2 < 1e16) = -1e18;
 
-scale = 1;
+scale = 1e-18;
 
-u2 = scale*u2;
-v2 = scale*v2;
+u1_vec = u1_vec*scale;
+v1_vec = v1_vec*scale;
+u2 = u2*scale;
+v2 = v2*scale;
 
-%E_gap = E_opt + E_bind - E_off_h - E_BGR - E_thermal;
+E_gap = E_opt - E_off_h - 0.11 - 0.7; %E_opt - E_off - E_thermal - E_BGR
 
-E_gap = E_opt - E_off_h;
-
-f = figure('Position',[100 100 900 400]);
+f = figure('Position',[100 100 1000 400]);
+set(gcf,'defaultAxesFontName','Arial','defaultTextFontName','Arial')
 hold on
 plot(E_gap + 2*E_fermi_e + flipud(xfit_g),u1_vec,'k-','LineWidth',2); %convolved electron
 plot(E_gap + 2*E_fermi_e + flipud(xfit_g),u2,'k--','LineWidth',2); %raw electron
 plot([E_gap + 2*E_fermi_e + -E_fermi_e, E_gap + 2*E_fermi_e + -E_fermi_e],[0 6e18],'r-','LineWidth',2) %Ef electron
-plot([0, 0],[0, 2e18],'b:','LineWidth',2) %gap
+
+plot([0, 0],[0, 2.3],'b:','LineWidth',2) %gap
+plot([E_gap, E_gap],[0, 2.3],'b:','LineWidth',2)
+
 plot(-E_off_h + xfit_g,v1_vec,'k-','LineWidth',2);
 plot(-E_off_h + xfit_g,v2,'k--','LineWidth',2);
 plot([-E_off_h - E_fermi_h,-E_off_h - E_fermi_h],[0 6e18],'-r','LineWidth',2)
-plot([E_gap, E_gap],[0, 2e18],'b:','LineWidth',2)
-plot([0, E_gap],[2e18, 2e18],'b:','LineWidth',2)
-xlim([-0.5 2.5])
-ylim([1e10 6e18])
-legend('Lorentzian Convolved Densities of States','Densities of States (no broadening)','Quasi-Fermi Level','Energy Gap','Location','North')
+
+%plot([0, E_gap],[2e18, 2e18],'b:','LineWidth',2)
+xlim([-0.35 1.45])
+ylim([0 6])
+%legend('Lorentzian Convolved Densities of States','Densities of States (no broadening)','Quasi-Fermi Level','Energy Gap','Location','North')
+legend('Lorentzian Convolved Densities of States','Densities of States (no broadening)','Location','North')
 xlabel('Energy (eV, referenced at K-VB)')
-ylabel('Density of States (arb.)')
+ylabel('Density of States (arb. units)')
 set(gca,'FontSize',14)
+dim = [0.15 0.7 0.1 0.1];
+str = {'Holes'};
+annotation('textbox',dim,'String',str,'FitBoxToText','on','FontSize',12,'EdgeColor','none');
+dim = [0.80 0.7 0.1 0.1];
+str = {'Electrons'};
+annotation('textbox',dim,'String',str,'FitBoxToText','on','FontSize',12,'EdgeColor','none');
+dim = [0.235 0.14 0.1 0.1];
+str = {'E_f^h'};
+annotation('textbox',dim,'String',str,'FitBoxToText','on','FontSize',12,'EdgeColor','none');
+dim = [0.75 0.14 0.1 0.1];
+str = {'E_f^e'};
+annotation('textbox',dim,'String',str,'FitBoxToText','on','FontSize',12,'EdgeColor','none');
 hold off
 
-saveas(gcf,'fig_DOS.png')
+saveas(gcf,'fig_DOS_arial','svg')
 
 
 % figure();
