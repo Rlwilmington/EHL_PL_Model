@@ -102,20 +102,107 @@ for i = startfile:21
     Myfit10(:,i) = Myfit10(:,i) + 0.25*(i-startfile);
 end
 
+%% OLD DUAL WATERFALL PLOT
+
+% line_val = 1.3;
+% 
+% 
+% figure('Renderer', 'painters', 'Position', [10 10 1200 600])
+% axes('Position',[0.001 0.001 0.498 0.998],'xtick',[],'ytick',[],'box','on','handlevisibility','off')
+% axes('Position',[0.5 0.001 0.498 0.998],'xtick',[],'ytick',[],'box','on','handlevisibility','off')
+% 
+% h1 = axes('Position',[0.07 0.13 0.38 0.8]);
+% set(gca,'FontSize',fontsize,'CLim',[power_vec(startfile) power_vec(21)])
+% 
+% m_color = (256-1)/(power_vec(21)-power_vec(1));
+% b_color = 1 - m_color*power_vec(1);
+% 
+% color_list = round(m_color.*power_vec + b_color);
+% 
+% 
+% colormap(jet);
+% A = colormap;
+% custcolormap = A(color_list(startfile:21),:);
+% 
+% ColorOdrDef = get(gca,'ColorOrder'); %7x3 RGB array
+% ColorOdrCustom = custcolormap;
+% set(gca,'ColorOrder',ColorOdrCustom);
+% 
+% 
+% hold on
+% for i = startfile:21
+%     filenum = i;
+%     p1(i) = plot(Mxdata(filenum,:),Mydata(filenum,:),'o','MarkerSize',2);
+% end
+%     
+%     
+% for i = startfile:21
+%     filenum = i;
+%     p2(i) = plot(Mxfit(filenum,:),Myfit(filenum,:),'k:','LineWidth',line_val);
+% end
+% 
+% 
+% %legend([p2(21), p2(20), p2(19), p2(18), p2(17), p2(16), p2(15), p2(14), p2(13), p2(12), p2(11), p2(10), p2(9), p2(8), p2(7), p2(6), p2(5), p2(4)],leg)
+% xlim([1.4 2.1])
+% ylim([-0.25 4.4])
+% ylabel('PL Intensity (arb.)')
+% xlabel('Energy (eV)')
+% c = colorbar(gca);
+% c.Label.String = 'Power Density (kW/cm^2)';
+% legend([p2(startfile)],'Model Fit')
+% hold off
+% 
+% h2 = axes('Position',[0.57 0.13 0.38 0.8]);
+% set(gca,'FontSize',fontsize,'CLim',[power_vec(startfile) power_vec(21)])
+% set(gca,'ColorOrder',ColorOdrCustom);
+% 
+% hold on
+% for i = startfile:21
+%     filenum = i;
+%     p1(i) = plot(Mxdata(filenum,:),Mydata(filenum,:),'o','MarkerSize',2);
+% end
+% 
+% for i = startfile:21
+%     filenum = i;
+%     p2(i) = plot(Mxfit10(start_vec(i):end,filenum),Myfit10(start_vec(i):end,filenum),':k','LineWidth',line_val);
+% end
+% 
+% xlim([1.4 2.1])
+% ylim([-0.25 4.4])
+% ylabel('PL Intensity (arb.)')
+% xlabel('Energy (eV)')
+% legend([p2(startfile)],'Model Fit')
+% c = colorbar(gca);
+% c.Label.String = 'Power Density (kW/cm^2)';
+% dim = [0.007 0.88 0.1 0.1];
+% str = {'(a)'};
+% annotation('textbox',dim,'String',str,'FitBoxToText','on','FontSize',20,'EdgeColor','none');
+% dim = [0.507 0.88 0.1 0.1];
+% str = {'(b)'};
+% annotation('textbox',dim,'String',str,'FitBoxToText','on','FontSize',20,'EdgeColor','none');
+% hold off
+% 
+% 
+% saveas(gcf,'fig_fitwith&withoutL.png')
+
 %%
 
 line_val = 1.3;
 
 
-figure('Renderer', 'painters', 'Position', [10 10 1200 600])
+figure('Renderer', 'painters', 'Position', [10 10 1000 800])
 axes('Position',[0.001 0.001 0.498 0.998],'xtick',[],'ytick',[],'box','on','handlevisibility','off')
-axes('Position',[0.5 0.001 0.498 0.998],'xtick',[],'ytick',[],'box','on','handlevisibility','off')
+axes('Position',[0.5 0.5 0.498 0.998],'xtick',[],'ytick',[],'box','on','handlevisibility','off')
+axes('Position',[0.5 0.001 0.498 0.498],'xtick',[],'ytick',[],'box','on','handlevisibility','off')
 
 h1 = axes('Position',[0.07 0.13 0.38 0.8]);
-set(gca,'FontSize',fontsize,'CLim',[power_vec(startfile) power_vec(21)])
+%set(gca,'FontSize',fontsize,'CLim',[power_vec(startfile) power_vec(21)])
+color_power_start = 1.5;
+color_power_end = 5.75;
+set(gca,'FontSize',fontsize,'CLim',[color_power_start color_power_end])
 
-m_color = (256-1)/(power_vec(21)-power_vec(1));
-b_color = 1 - m_color*power_vec(1);
+m_color = (256-1)/(color_power_end-color_power_start);
+b_color = 1 - m_color*color_power_start;
 
 color_list = round(m_color.*power_vec + b_color);
 
@@ -132,7 +219,7 @@ set(gca,'ColorOrder',ColorOdrCustom);
 hold on
 for i = startfile:21
     filenum = i;
-    p1(i) = plot(Mxdata(filenum,:),Mydata(filenum,:),'o','MarkerSize',2);
+    p1(i) = plot(Mxdata(filenum,:),Mydata(filenum,:),'o','MarkerSize',3);
 end
     
     
@@ -149,41 +236,52 @@ ylabel('PL Intensity (arb.)')
 xlabel('Energy (eV)')
 c = colorbar(gca);
 c.Label.String = 'Power Density (kW/cm^2)';
-legend([p2(startfile)],'Model Fit')
+legend([p2(startfile)],'Model Fit','FontSize',12)
 hold off
 
-h2 = axes('Position',[0.57 0.13 0.38 0.8]);
+h2 = axes('Position',[0.58 0.60 0.38 0.33]);
 set(gca,'FontSize',fontsize,'CLim',[power_vec(startfile) power_vec(21)])
-set(gca,'ColorOrder',ColorOdrCustom);
 
 hold on
-for i = startfile:21
-    filenum = i;
-    p1(i) = plot(Mxdata(filenum,:),Mydata(filenum,:),'o','MarkerSize',2);
-end
+filenum = 21;
+p1 = plot(Mxdata(filenum,:),Mydata(filenum,:)-3.25,'.','MarkerSize',10);
+p2 = plot(Mxfit10(start_vec(i):end,filenum),Myfit10(start_vec(i):end,filenum)-3.25,'r--','LineWidth',1.5); 
+%3.25 to bring scale back to zero, only showing 1 plot instead of waterfall
 
-for i = startfile:21
-    filenum = i;
-    p2(i) = plot(Mxfit10(start_vec(i):end,filenum),Myfit10(start_vec(i):end,filenum),':k','LineWidth',line_val);
-end
-
-xlim([1.4 2.1])
-ylim([-0.25 4.4])
+xlim([1.44 2.07])
+ylim([0 0.95])
 ylabel('PL Intensity (arb.)')
 xlabel('Energy (eV)')
-legend([p2(startfile)],'Model Fit')
-c = colorbar(gca);
-c.Label.String = 'Power Density (kW/cm^2)';
-dim = [0.007 0.88 0.1 0.1];
+legend('Raw Data','Simplified Fit','Location','NorthEast','FontSize',12)
+dim = [0.007 0.89 0.1 0.1];
 str = {'(a)'};
 annotation('textbox',dim,'String',str,'FitBoxToText','on','FontSize',20,'EdgeColor','none');
-dim = [0.507 0.88 0.1 0.1];
+dim = [0.507 0.89 0.1 0.1];
 str = {'(b)'};
+annotation('textbox',dim,'String',str,'FitBoxToText','on','FontSize',20,'EdgeColor','none');
+dim = [0.507 0.39 0.1 0.1];
+str = {'(c)'};
 annotation('textbox',dim,'String',str,'FitBoxToText','on','FontSize',20,'EdgeColor','none');
 hold off
 
+h3 = axes('Position',[0.58 0.1 0.38 0.33]);
+set(gca,'FontSize',fontsize,'CLim',[power_vec(startfile) power_vec(21)])
 
-saveas(gcf,'fig_fitwith&withoutL.png')
+hold on
+filenum = 21;
+p1 = plot(Mxdata(filenum,:),Mydata(filenum,:)-3.25,'.','MarkerSize',10);
+p3 = plot(Mxfit(filenum,:),Myfit(filenum,:)-3.25,'r--','LineWidth',1.5);
+
+xlim([1.44 2.07])
+ylim([0 0.95])
+ylabel('PL Intensity (arb.)')
+xlabel('Energy (eV)')
+legend('Raw Data','Complete Fit','Location','NorthEast','FontSize',12)
+hold off
+
+saveas(gcf,'fig_fig3','svg')
+saveas(gcf,'fig_fig3.png')
+
 
 
 %%
