@@ -190,12 +190,12 @@ end
 line_val = 1.3;
 
 
-figure('Renderer', 'painters', 'Position', [10 10 1000 800])
-axes('Position',[0.001 0.001 0.498 0.998],'xtick',[],'ytick',[],'box','on','handlevisibility','off')
-axes('Position',[0.5 0.5 0.498 0.998],'xtick',[],'ytick',[],'box','on','handlevisibility','off')
-axes('Position',[0.5 0.001 0.498 0.498],'xtick',[],'ytick',[],'box','on','handlevisibility','off')
+figure('Renderer', 'painters', 'Position', [10 10 900 800])
+axes('Position',[0.001 0.001 0.667 0.999],'xtick',[],'ytick',[],'box','on','handlevisibility','off')
+axes('Position',[0.668 0.666 0.333 0.334],'xtick',[],'ytick',[],'box','on','handlevisibility','off')
+axes('Position',[0.668 0.333 0.333 0.333],'xtick',[],'ytick',[],'box','on','handlevisibility','off')
 
-h1 = axes('Position',[0.07 0.13 0.38 0.8]);
+h1 = axes('Position',[0.09 0.1 0.51 0.82]);
 %set(gca,'FontSize',fontsize,'CLim',[power_vec(startfile) power_vec(21)])
 color_power_start = 1.5;
 color_power_end = 5.75;
@@ -239,8 +239,8 @@ c.Label.String = 'Power Density (kW/cm^2)';
 legend([p2(startfile)],'Model Fit','FontSize',12)
 hold off
 
-h2 = axes('Position',[0.58 0.60 0.38 0.33]);
-set(gca,'FontSize',fontsize,'CLim',[power_vec(startfile) power_vec(21)])
+h2 = axes('Position',[0.73 0.727 0.26 0.26]);
+set(gca,'FontSize',10,'CLim',[power_vec(startfile) power_vec(21)])
 
 hold on
 filenum = 21;
@@ -252,20 +252,20 @@ xlim([1.44 2.07])
 ylim([0 0.95])
 ylabel('PL Intensity (arb.)')
 xlabel('Energy (eV)')
-legend('Raw Data','Simplified Fit','Location','NorthEast','FontSize',12)
-dim = [0.007 0.89 0.1 0.1];
+legend('Raw Data','Simplified Fit','Location','NorthEast','FontSize',8)
+dim = [0.002 0.905 0.1 0.1];
 str = {'(a)'};
 annotation('textbox',dim,'String',str,'FitBoxToText','on','FontSize',20,'EdgeColor','none');
-dim = [0.507 0.89 0.1 0.1];
+dim = [0.666 0.905 0.1 0.1];
 str = {'(b)'};
 annotation('textbox',dim,'String',str,'FitBoxToText','on','FontSize',20,'EdgeColor','none');
-dim = [0.507 0.39 0.1 0.1];
+dim = [0.666 0.571 0.1 0.1];
 str = {'(c)'};
 annotation('textbox',dim,'String',str,'FitBoxToText','on','FontSize',20,'EdgeColor','none');
 hold off
 
-h3 = axes('Position',[0.58 0.1 0.38 0.33]);
-set(gca,'FontSize',fontsize,'CLim',[power_vec(startfile) power_vec(21)])
+h3 = axes('Position',[0.73 0.395 0.26 0.26]);
+set(gca,'FontSize',10,'CLim',[power_vec(startfile) power_vec(21)])
 
 hold on
 filenum = 21;
@@ -276,11 +276,11 @@ xlim([1.44 2.07])
 ylim([0 0.95])
 ylabel('PL Intensity (arb.)')
 xlabel('Energy (eV)')
-legend('Raw Data','Complete Fit','Location','NorthEast','FontSize',12)
+legend('Raw Data','Complete Fit','Location','NorthEast','FontSize',8)
 hold off
 
 saveas(gcf,'fig_fig3','svg')
-saveas(gcf,'fig_fig3.png')
+saveas(gcf,'fig_fig3','png')
 
 
 
