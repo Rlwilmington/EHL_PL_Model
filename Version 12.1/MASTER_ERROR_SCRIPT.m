@@ -2,7 +2,9 @@
 clear all
 close all
 
-filenum = 14;
+load('montecarloerrorsaveVersion12.11_April1720_file17.mat')
+
+filenum = 17;
 
 
 LSQ_FIT_MAIN_SCRIPT %get fit X

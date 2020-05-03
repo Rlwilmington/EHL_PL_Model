@@ -22,7 +22,7 @@ g_h_G = (degen_h_G*m_h_G)/(pi*hbar^2);
 Ef_h = F2(T,n,const,g_h_K,g_h_G,E_off_h);
 
 conv_h = @(tau) ( g_h_K.*( (exp((tau - Ef_h)./(k_b.*T)) + 1).^-1 ) + g_h_G.*( (exp((tau - Ef_h - E_off_h)./(k_b.*T)) + 1).^-1 ))...
-    .*(1./(2*pi)).*((D + beta*(tau-Ef_h).^2)./((E - tau).^2 + ((D + beta*(tau-Ef_h).^2)./2).^2));
+    .*(1./(2*pi)).*((D + beta*(tau - Ef_h).^2)./((E - tau).^2 + ((D + beta*(tau - Ef_h).^2)./2).^2));
 
 out = integral(conv_h,0,Inf,'ArrayValued',true);
 

@@ -284,55 +284,6 @@ saveas(gcf,'fig_fig3.png')
 
 
 
-%%
-
-fontsize = 16;
-
-figure('Renderer', 'painters', 'Position', [10 10 650 800])
-axes('Position',[0.001 0.667 0.998 0.333],'xtick',[],'ytick',[],'box','on','handlevisibility','off')
-axes('Position',[0.001 0.333 0.998 0.333],'xtick',[],'ytick',[],'box','on','handlevisibility','off')
-axes('Position',[0.001 0.001 0.998 0.333],'xtick',[],'ytick',[],'box','on','handlevisibility','off')
-
-
-h2 = axes('Position',[0.2 0.333+0.1 0.75 0.20],'box','off');
-par = 1;
-x = power_vec(startfile:end);
-yprime = allentries(startfile:end,par+1);
-errorbar(x,yprime,allentries(startfile:end,par+10),'-bo','LineWidth',2);
-ylabel('n (1e13/cm^2)')
-xlabel('Power Density (kW/cm^2)')
-xlim([2 5.75]) 
-set(gca,'FontSize',fontsize,'box','off');
-
-h1 = axes('Position',[0.2 0.667+0.1 0.75 0.20],'box','off');
-par = 2;
-errorbar(power_vec(startfile:end),allentries(startfile:end,par+1),allentries(startfile:end,par+10),'-bo','LineWidth',2);
-ylabel('Temperature (K)')
-xlabel('Power Density (kW/cm^2)')
-xlim([2 5.75]) 
-set(gca,'FontSize',fontsize,'box','off');
-
-h3 = axes('Position',[0.2 0.1 0.75 0.20],'box','off');
-par = 3;
-hold on
-errorbar(power_vec(startfile:end),allentries(startfile:end,par+1),allentries(startfile:end,par+10),'-bo','LineWidth',2);
-ylabel('BGR (eV)')
-xlabel('Power Density (kW/cm^2)')
-xlim([2 5.75]) 
-set(gca,'FontSize',fontsize,'box','off');
-
-dim = [0.007 0.667+0.23 0.1 0.1];
-str = {'(a)'};
-annotation('textbox',dim,'String',str,'FitBoxToText','on','FontSize',20,'EdgeColor','none');
-dim = [0.007 0.333+0.23 0.1 0.1];
-str = {'(b)'};
-annotation('textbox',dim,'String',str,'FitBoxToText','on','FontSize',20,'EdgeColor','none');
-dim = [0.007 0.000+0.23 0.1 0.1];
-str = {'(c)'};
-annotation('textbox',dim,'String',str,'FitBoxToText','on','FontSize',20,'EdgeColor','none');
-hold off
-
-saveas(gcf,'fig_pars.png')
 
 %%
 
@@ -461,23 +412,94 @@ QE = scale*QE;
 QE_errbar = scale*QE_errbar;
 
 
-figure('Renderer', 'painters', 'Position', [10 10 650 800])
-axes('Position',[0.001 0.001 0.998 0.498],'xtick',[],'ytick',[],'box','on','handlevisibility','off')
-axes('Position',[0.001 0.5 0.998 0.498],'xtick',[],'ytick',[],'box','on','handlevisibility','off')
+% figure('Renderer', 'painters', 'Position', [10 10 650 800])
+% axes('Position',[0.001 0.001 0.998 0.498],'xtick',[],'ytick',[],'box','on','handlevisibility','off')
+% axes('Position',[0.001 0.5 0.998 0.498],'xtick',[],'ytick',[],'box','on','handlevisibility','off')
+% 
+% h1 = axes('Position',[0.13 0.6 0.8 0.34]);
+% set(gca,'FontSize',fontsize)
+% hold on
+% plot(power_vec(startfile:end),Z(startfile:end,3),'-ro','LineWidth',2);
+% plot(power_vec(startfile:end),Z(startfile:end,4),'-bo','LineWidth',2);
+% plot(power_vec(startfile:end),allentries(startfile:end,2),'-ko','LineWidth',2);
+% xlabel('Power Density (kW/cm^2)')
+% ylabel('n_h (1e13/cm^2)')
+% legend('K-Valley','\Gamma Valley', 'Total','Location','East')
+% hold off
+% 
+% 
+% h2 = axes('Position',[0.13 0.1 0.8 0.34]);
+% hold on
+% %errorbar(power_vec(startfile:end),allentries(startfile:end,par+1),allentries(startfile:end,par+10),'-o','LineWidth',2);
+% errorbar(power_vec(startfile:end),QE,QE_errbar,'-bo','LineWidth',2);
+% set(gca,'FontSize',fontsize)
+% %plot(power_vec(startfile:end),peakheight(startfile:21),'r^','LineWidth',2);
+% ylabel('|\mu|^2 (arb.)')
+% xlabel('Power Density (kW/cm^2)')
+% xlim([2 5.75]) 
+% set(gca,'FontSize',fontsize)
+% dim = [0.007 0.895 0.1 0.1];
+% str = {'(a)'};
+% annotation('textbox',dim,'String',str,'FitBoxToText','on','FontSize',20,'EdgeColor','none');
+% dim = [0.007 0.395 0.1 0.1];
+% str = {'(b)'};
+% annotation('textbox',dim,'String',str,'FitBoxToText','on','FontSize',20,'EdgeColor','none');
+% hold off
+% 
+% 
+% saveas(gcf,'fig_npervalley+dipole.png')
 
-h1 = axes('Position',[0.13 0.6 0.8 0.34]);
-set(gca,'FontSize',fontsize)
+%%
+
+annot_offset = 0;
+
+fontsize = 16;
+
+figure('Renderer', 'painters', 'Position', [10 10 400 800])
+axes('Position',[0.001 0.667 0.998 0.333],'xtick',[],'ytick',[],'box','on','handlevisibility','off')
+axes('Position',[0.001 0.333 0.998 0.333],'xtick',[],'ytick',[],'box','on','handlevisibility','off')
+axes('Position',[0.001 0.001 0.998 0.333],'xtick',[],'ytick',[],'box','on','handlevisibility','off')
+
+
+% par = 1;
+% x = power_vec(startfile:end);
+% yprime = allentries(startfile:end,par+1);
+% errorbar(x,yprime,allentries(startfile:end,par+10),'-bo','LineWidth',2);
+% ylabel('n (1e13/cm^2)')
+% xlabel('Power Density (kW/cm^2)')
+% xlim([2 5.75]) 
+% set(gca,'FontSize',fontsize)
+
+h3 = axes('Position',[0.2 0.1 0.78 0.20],'box','off');
+
 hold on
 plot(power_vec(startfile:end),Z(startfile:end,3),'-ro','LineWidth',2);
 plot(power_vec(startfile:end),Z(startfile:end,4),'-bo','LineWidth',2);
 plot(power_vec(startfile:end),allentries(startfile:end,2),'-ko','LineWidth',2);
+xlim([2 5.75])
 xlabel('Power Density (kW/cm^2)')
 ylabel('n_h (1e13/cm^2)')
-legend('K-Valley','\Gamma Valley', 'Total','Location','East')
+legend('K-Valley','\Gamma Valley', 'Total','Location','East','FontSize',12)
 hold off
+set(gca,'FontSize',fontsize,'box','off');
 
+h1 = axes('Position',[0.2 0.667+0.1 0.78 0.20],'box','off');
+par = 2;
+errorbar(power_vec(startfile:end),allentries(startfile:end,par+1),allentries(startfile:end,par+10),'-bo','LineWidth',2);
+ylabel('Temperature (K)')
+xlabel('Power Density (kW/cm^2)')
+xlim([2 5.75]) 
+set(gca,'FontSize',fontsize,'box','off');
 
-h2 = axes('Position',[0.13 0.1 0.8 0.34]);
+h2 = axes('Position',[0.2 0.333+0.1 0.78 0.20],'box','off');
+
+% par = 3;
+% hold on
+% errorbar(power_vec(startfile:end),allentries(startfile:end,par+1),allentries(startfile:end,par+10),'-bo','LineWidth',2);
+% ylabel('BGR (eV)')
+% xlabel('Power Density (kW/cm^2)')
+% xlim([2 5.75]) 
+
 hold on
 %errorbar(power_vec(startfile:end),allentries(startfile:end,par+1),allentries(startfile:end,par+10),'-o','LineWidth',2);
 errorbar(power_vec(startfile:end),QE,QE_errbar,'-bo','LineWidth',2);
@@ -486,17 +508,22 @@ set(gca,'FontSize',fontsize)
 ylabel('|\mu|^2 (arb.)')
 xlabel('Power Density (kW/cm^2)')
 xlim([2 5.75]) 
-set(gca,'FontSize',fontsize)
-dim = [0.007 0.895 0.1 0.1];
+hold off
+set(gca,'FontSize',fontsize,'box','off');
+
+dim = [0.007 0.667+annot_offset 0.1 0.1];
 str = {'(a)'};
 annotation('textbox',dim,'String',str,'FitBoxToText','on','FontSize',20,'EdgeColor','none');
-dim = [0.007 0.395 0.1 0.1];
+dim = [0.007 0.333+annot_offset 0.1 0.1];
 str = {'(b)'};
+annotation('textbox',dim,'String',str,'FitBoxToText','on','FontSize',20,'EdgeColor','none');
+dim = [0.007 0.000+annot_offset 0.1 0.1];
+str = {'(c)'};
 annotation('textbox',dim,'String',str,'FitBoxToText','on','FontSize',20,'EdgeColor','none');
 hold off
 
-
-saveas(gcf,'fig_npervalley+dipole.png')
+%saveas(gcf,'fig_pars.png')
+saveas(gcf,'fig_fig4','svg')
 
 %%
 
@@ -505,19 +532,19 @@ C = allentries(:,8);
 beta = allentries(:,6);
 D = allentries(:,9);
 
-
 gam_e = alpha.*(Z(:,1).^2) + C;
 gam_h = beta.*(Z(:,2).^2) + D;
 
 tau_e = hbar./gam_e;
 tau_h = hbar./gam_h;
 
+disp(tau_e(19))
+disp(tau_h(19))
+
+
 figure();
-hold on
-plot(power_vec(startfile:end),tau_e(startfile:end))
-plot(power_vec(startfile:end),tau_h(startfile:end))
-ylim([0 1e-12])
-hold off
+semilogy(power_vec(startfile:end),tau_e(startfile:end),power_vec(startfile:end),tau_h(startfile:end))
+%ylim([0 1e-12])
 
 %%
 
