@@ -190,16 +190,15 @@ end
 line_val = 1.3;
 
 
-figure('Renderer', 'painters', 'Position', [10 10 900 800])
-axes('Position',[0.001 0.001 0.667 0.999],'xtick',[],'ytick',[],'box','on','handlevisibility','off')
-axes('Position',[0.668 0.666 0.333 0.334],'xtick',[],'ytick',[],'box','on','handlevisibility','off')
-axes('Position',[0.668 0.333 0.333 0.333],'xtick',[],'ytick',[],'box','on','handlevisibility','off')
+figure('Renderer', 'painters', 'Position', [10 10 1000 800])
+axes('Position',[0.001 0.001 0.498 0.998],'xtick',[],'ytick',[],'box','on','handlevisibility','off')
+axes('Position',[0.5 0.5 0.498 0.998],'xtick',[],'ytick',[],'box','on','handlevisibility','off')
+axes('Position',[0.5 0.001 0.498 0.498],'xtick',[],'ytick',[],'box','on','handlevisibility','off')
 
-h1 = axes('Position',[0.09 0.1 0.51 0.82]);
+h1 = axes('Position',[0.07 0.13 0.38 0.8]);
 %set(gca,'FontSize',fontsize,'CLim',[power_vec(startfile) power_vec(21)])
 color_power_start = 1.5;
 color_power_end = 5.75;
-set(gca,'FontSize',fontsize,'CLim',[color_power_start color_power_end])
 
 m_color = (256-1)/(color_power_end-color_power_start);
 b_color = 1 - m_color*color_power_start;
@@ -213,7 +212,7 @@ custcolormap = A(color_list(startfile:21),:);
 
 ColorOdrDef = get(gca,'ColorOrder'); %7x3 RGB array
 ColorOdrCustom = custcolormap;
-set(gca,'ColorOrder',ColorOdrCustom);
+set(gca,'FontWeight','bold','ColorOrder',ColorOdrCustom,'FontSize',fontsize,'CLim',[color_power_start color_power_end]);
 
 
 hold on
@@ -236,11 +235,11 @@ ylabel('PL Intensity (arb.)')
 xlabel('Energy (eV)')
 c = colorbar(gca);
 c.Label.String = 'Power Density (kW/cm^2)';
-legend([p2(startfile)],'Model Fit','FontSize',12)
+legend([p2(startfile)],'Fit','FontSize',12)
 hold off
 
-h2 = axes('Position',[0.73 0.727 0.26 0.26]);
-set(gca,'FontSize',10,'CLim',[power_vec(startfile) power_vec(21)])
+h2 = axes('Position',[0.58 0.60 0.38 0.33]);
+set(gca,'FontWeight','bold','FontSize',fontsize,'CLim',[power_vec(startfile) power_vec(21)])
 
 hold on
 filenum = 21;
@@ -252,20 +251,20 @@ xlim([1.44 2.07])
 ylim([0 0.95])
 ylabel('PL Intensity (arb.)')
 xlabel('Energy (eV)')
-legend('Raw Data','Simplified Fit','Location','NorthEast','FontSize',8)
-dim = [0.002 0.905 0.1 0.1];
+legend('Raw Data (5.5 kW/cm^2)','Fit (No Broadening)','Location','NorthEast','FontSize',12)
+dim = [0.007 0.89 0.1 0.1];
 str = {'(a)'};
 annotation('textbox',dim,'String',str,'FitBoxToText','on','FontSize',20,'EdgeColor','none');
-dim = [0.666 0.905 0.1 0.1];
+dim = [0.507 0.89 0.1 0.1];
 str = {'(b)'};
 annotation('textbox',dim,'String',str,'FitBoxToText','on','FontSize',20,'EdgeColor','none');
-dim = [0.666 0.571 0.1 0.1];
+dim = [0.507 0.39 0.1 0.1];
 str = {'(c)'};
 annotation('textbox',dim,'String',str,'FitBoxToText','on','FontSize',20,'EdgeColor','none');
 hold off
 
-h3 = axes('Position',[0.73 0.395 0.26 0.26]);
-set(gca,'FontSize',10,'CLim',[power_vec(startfile) power_vec(21)])
+h3 = axes('Position',[0.58 0.1 0.38 0.33]);
+set(gca,'FontWeight','bold','FontSize',fontsize,'CLim',[power_vec(startfile) power_vec(21)])
 
 hold on
 filenum = 21;
@@ -276,11 +275,11 @@ xlim([1.44 2.07])
 ylim([0 0.95])
 ylabel('PL Intensity (arb.)')
 xlabel('Energy (eV)')
-legend('Raw Data','Complete Fit','Location','NorthEast','FontSize',8)
+legend('Raw Data (5.5 kW/cm^2)','Fit (With Broadening)','Location','NorthEast','FontSize',12)
 hold off
 
-saveas(gcf,'fig_fig3','svg')
-saveas(gcf,'fig_fig3','png')
+saveas(gcf,'fig_fig3_v2','svg')
+%saveas(gcf,'fig_fig3.png')
 
 
 
@@ -306,7 +305,7 @@ errorbar(power_vec(startfile:end),allentries(startfile:end,par+1),allentries(sta
 ylabel('Alpha (arb.)')
 xlabel('Power Density (kW/cm^2)')
 xlim([2 5.75]) 
-set(gca,'FontSize',fontsize,'box','off');
+set(gca,'FontWeight','bold','FontSize',fontsize,'box','off');
 
 h2 = axes('Position',[0.5+pad+offset 0.5+pad+offset 0.5-2*pad 0.5-2*pad]);
 par = 5;
@@ -314,7 +313,7 @@ errorbar(power_vec(startfile:end),allentries(startfile:end,par+1),allentries(sta
 ylabel('Beta (arb.)')
 xlabel('Power Density (kW/cm^2)')
 xlim([2 5.75]) 
-set(gca,'FontSize',fontsize,'box','off');
+set(gca,'FontWeight','bold','FontSize',fontsize,'box','off');
 
 h3 = axes('Position',[pad+offset pad+offset 0.5-2*pad 0.5-2*pad]);
 par = 7;
@@ -322,7 +321,7 @@ errorbar(power_vec(startfile:end),allentries(startfile:end,par+1),allentries(sta
 ylabel('C (arb.)')
 xlabel('Power Density (kW/cm^2)')
 xlim([2 5.75]) 
-set(gca,'FontSize',fontsize,'box','off');
+set(gca,'FontWeight','bold','FontSize',fontsize,'box','off');
 
 h4 = axes('Position',[0.5+pad+offset pad+offset 0.5-2*pad 0.5-2*pad]);
 par = 8;
@@ -330,7 +329,7 @@ errorbar(power_vec(startfile:end),allentries(startfile:end,par+1),allentries(sta
 ylabel('D (arb.)')
 xlabel('Power Density (kW/cm^2)')
 xlim([2 5.75]) 
-set(gca,'FontSize',fontsize,'box','off');
+set(gca,'FontWeight','bold','FontSize',fontsize,'box','off');
 dim = [0.007 0.89 0.1 0.1];
 str = {'(a)'};
 annotation('textbox',dim,'String',str,'FitBoxToText','on','FontSize',20,'EdgeColor','none');
@@ -392,7 +391,7 @@ end
 %% Plots
 
 figure();
-set(gca,'FontSize',fontsize)
+set(gca,'FontWeight','bold','FontSize',fontsize)
 hold on
 plot(power_vec(startfile:end),Z(startfile:end,1),'-ro','LineWidth',2);
 plot(power_vec(startfile:end),Z(startfile:end,2),'-bo','LineWidth',2);
@@ -456,9 +455,9 @@ annot_offset = 0;
 fontsize = 16;
 
 figure('Renderer', 'painters', 'Position', [10 10 400 800])
-axes('Position',[0.001 0.667 0.998 0.333],'xtick',[],'ytick',[],'box','on','handlevisibility','off')
-axes('Position',[0.001 0.333 0.998 0.333],'xtick',[],'ytick',[],'box','on','handlevisibility','off')
-axes('Position',[0.001 0.001 0.998 0.333],'xtick',[],'ytick',[],'box','on','handlevisibility','off')
+%axes('Position',[0.001 0.667 0.998 0.333],'xtick',[],'ytick',[],'box','on','handlevisibility','off')
+%axes('Position',[0.001 0.333 0.998 0.333],'xtick',[],'ytick',[],'box','on','handlevisibility','off')
+%axes('Position',[0.001 0.001 0.998 0.333],'xtick',[],'ytick',[],'box','on','handlevisibility','off')
 
 
 % par = 1;
@@ -470,28 +469,30 @@ axes('Position',[0.001 0.001 0.998 0.333],'xtick',[],'ytick',[],'box','on','hand
 % xlim([2 5.75]) 
 % set(gca,'FontSize',fontsize)
 
-h3 = axes('Position',[0.2 0.1 0.78 0.20],'box','off');
+h3 = axes('Position',[0.2 0.1 0.78 0.29],'box','off');
 
 hold on
+par = 1;
 plot(power_vec(startfile:end),Z(startfile:end,3),'-ro','LineWidth',2);
 plot(power_vec(startfile:end),Z(startfile:end,4),'-bo','LineWidth',2);
-plot(power_vec(startfile:end),allentries(startfile:end,2),'-ko','LineWidth',2);
+%plot(power_vec(startfile:end),allentries(startfile:end,2),'-ko','LineWidth',2);
+errorbar(power_vec(startfile:end),allentries(startfile:end,par+1),allentries(startfile:end,par+10),'-ko','LineWidth',2);
 xlim([2 5.75])
 xlabel('Power Density (kW/cm^2)')
 ylabel('n_h (1e13/cm^2)')
 legend('K-Valley','\Gamma Valley', 'Total','Location','East','FontSize',12)
 hold off
-set(gca,'FontSize',fontsize,'box','off');
+set(gca,'FontWeight','bold','FontSize',fontsize,'box','off');
 
 h1 = axes('Position',[0.2 0.667+0.1 0.78 0.20],'box','off');
 par = 2;
 errorbar(power_vec(startfile:end),allentries(startfile:end,par+1),allentries(startfile:end,par+10),'-bo','LineWidth',2);
 ylabel('Temperature (K)')
-xlabel('Power Density (kW/cm^2)')
+%xlabel('Power Density (kW/cm^2)')
 xlim([2 5.75]) 
-set(gca,'FontSize',fontsize,'box','off');
+set(gca,'FontWeight','bold','FontSize',fontsize,'box','off');
 
-h2 = axes('Position',[0.2 0.333+0.1 0.78 0.20],'box','off');
+h2 = axes('Position',[0.2 0.38+0.1 0.78 0.20],'box','off');
 
 % par = 3;
 % hold on
@@ -505,11 +506,11 @@ hold on
 errorbar(power_vec(startfile:end),QE,QE_errbar,'-bo','LineWidth',2);
 set(gca,'FontSize',fontsize)
 %plot(power_vec(startfile:end),peakheight(startfile:21),'r^','LineWidth',2);
-ylabel('|\mu|^2 (arb.)')
-xlabel('Power Density (kW/cm^2)')
+ylabel('|\mu|^2 (arb. units)')
+%xlabel('Power Density (kW/cm^2)')
 xlim([2 5.75]) 
 hold off
-set(gca,'FontSize',fontsize,'box','off');
+set(gca,'FontWeight','bold','FontSize',fontsize,'box','off');
 
 dim = [0.007 0.667+annot_offset 0.1 0.1];
 str = {'(a)'};
@@ -523,7 +524,7 @@ annotation('textbox',dim,'String',str,'FitBoxToText','on','FontSize',20,'EdgeCol
 hold off
 
 %saveas(gcf,'fig_pars.png')
-saveas(gcf,'fig_fig4','svg')
+saveas(gcf,'fig_fig4_bold','svg')
 
 %%
 
@@ -571,7 +572,7 @@ x = allentries(startfile:endfile,2);
 z = allentries(startfile:endfile,4);
 
 a_bohr = 6.0e-8;
-bgr = @(n) 3.1*(((n*1e13).*a_bohr^2).^(1/3)).*(E_bind);
+bgr = @(n) 2.8*(((n*1e13).*a_bohr^2).^(1/3)).*(E_bind);
 nspace = linspace(2.5,5,1000);
 bgrvals = bgr(nspace);
 
@@ -592,8 +593,8 @@ plot(bgrvals,nspace,'-r','LineWidth',2);
 ylim([2 5.5])
 xlabel('Bandgap Renormalization Energy (eV)')
 ylabel('Charge Carrier Density (1e13/cm^2)')
-legend('Fit Results','Predicted BGR vs Charge Carrier Density','Location','SouthEast')
-set(gca,'FontSize',fontsize)
+legend('Fit Results','Predicted BGR','Location','SouthEast')
+set(gca,'FontWeight','bold','FontSize',fontsize)
 hold off
 
 saveas(gcf,'fig_nvsBGR.png')
@@ -617,7 +618,7 @@ legend('3.1','2.8','2.5','data')
 ylabel('E_{BGR}/E_{bind}')
 xlabel('na_{b}^2')
 ylim([-2 0])
-set(gca,'FontSize',fontsize)
+set(gca,'FontWeight','bold','FontSize',fontsize)
 
 
 

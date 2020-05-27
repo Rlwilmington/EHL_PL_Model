@@ -154,7 +154,6 @@ axes('Position',[0.5 0.001 0.498 0.998],'xtick',[],'ytick',[],'box','on','handle
 
 
 h1 = axes('Position',[0.07 0.13 0.38 0.80]);
-set(gca,'FontSize',fontsize,'CLim',[power_vec(startfile) power_vec(21)])
 
 m_color = (256-1)/(power_vec(21)-power_vec(1));
 b_color = 1 - m_color*power_vec(1);
@@ -169,7 +168,7 @@ custcolormap = A(color_list(startfile:21),:);
 ColorOdrDef = get(gca,'ColorOrder'); %7x3 RGB array
 ColorOdrCustom = flipud(custcolormap);
 %ColorOdrCustom = custcolormap;
-set(gca,'ColorOrder',ColorOdrCustom);
+set(gca,'FontWeight','bold','FontSize',fontsize,'CLim',[power_vec(startfile) power_vec(21)],'ColorOrder',ColorOdrCustom);
 
 hold on
 for i = fliplr(startfile:21)
@@ -188,7 +187,7 @@ c.Label.String = 'Power Density (kW/cm^2)';
 hold off
 
 h2 = axes('Position',[0.57 0.13 0.4 0.80]);
-set(gca,'FontSize',fontsize)
+set(gca,'FontWeight','bold','FontSize',fontsize)
 hold on
 plot(h2,M(:,1),M(:,2),'-o','LineWidth',2);
 plot(h2,M(:,1),M(:,3),'-^','LineWidth',2);
@@ -209,7 +208,7 @@ hold off
 
 
 h3 = axes('Position',[0.78 0.785 0.2 0.19]);
-set(gca,'FontSize',12,'box','on')
+set(gca,'FontWeight','bold','FontSize',12,'box','on')
 T_list = linspace(260,620,10);
 hold on
 plot(polyval(f1,T_list),T_list,'--')
