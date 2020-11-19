@@ -20,7 +20,7 @@ close all
 
 %% OPTIONS
 
-%filenum = 21; %pick which file to analyze (1-21)
+filenum = 21; %pick which file to analyze (1-21)
 cutoff_index = 0; %index left cutoff for data, zero for no cutoff
 preview = 1; %if 1, input parameters will be plotted against raw data
 useprev = 0; %if 1, previous fit parameters will be used as starting pars for this fit
@@ -35,6 +35,7 @@ deltaB = UB-LB;
 
 
 par = LB + rand(1,length(UB)).*deltaB;
+%par = [ 4.8480  450    0.6498    8.7367    1.2270    0.4853   -0.0000   -0.0019];
 
 %par = [4.7687  603.8175    0.6588    8.9087    1.1942    0.5025   -0.0000    0.0022];
 
@@ -97,27 +98,27 @@ if preview == 1
     plot(xfit_conv,yfit,'r-')
     legend('Raw Data', 'Trial Fit','Location','NorthWest')
     hold off
-    
-    figure();
-    hold on
-    plot(xfit_g,u_vec)
-    plot(xfit_g,v_vec)
-    plot(xfit_conv,yfit,'x')
-    legend('D_e','D_h','Convolved Function')
-    title('Convolution')
-    hold off
-    
-    
-    xfit_g_electrons = E_opt + xfit_g;
-    xfit_g_holes = flipud(xfit_g);
-    
-    figure();
-    hold on
-    plot(xfit_g_electrons,u_vec)
-    plot(xfit_g_holes,v_vec)
-    legend('D_e','D_h','Convolved Function')
-    title('Convolution')
-    hold off
+%     
+%     figure();
+%     hold on
+%     plot(xfit_g,u_vec)
+%     plot(xfit_g,v_vec)
+%     plot(xfit_conv,yfit,'x')
+%     legend('D_e','D_h','Convolved Function')
+%     title('Convolution')
+%     hold off
+%     
+%     
+%     xfit_g_electrons = E_opt + xfit_g;
+%     xfit_g_holes = flipud(xfit_g);
+%     
+%     figure();
+%     hold on
+%     plot(xfit_g_electrons,u_vec)
+%     plot(xfit_g_holes,v_vec)
+%     legend('D_e','D_h','Convolved Function')
+%     title('Convolution')
+%     hold off
     
     drawnow
 end
@@ -142,32 +143,32 @@ res_y = PL_resid(X,const,xdata,ydata,f1,f2,f3,f4,f5);
 
 
 
-% figure();
-% hold on
-% plot(xdata,ydata,'b.')
-% plot(xfit_conv,yfit,'-r')
-% legend('Raw Data', 'LSQ Fit')
-% xlabel('Energy (eV)')
-% ylabel('PL Intensity (Arb. Units)')
-% hold off
-% 
-% figure();
-% hold on
-% plot(xdata,log(ydata),'b.')
-% plot(xfit_conv,log(yfit),'-r')
-% legend('Raw Data', 'LSQ Fit')
-% xlabel('Energy (eV)')
-% ylabel('Log PL Intensity (Arb. Units)')
-% xlim([1.4 inf])
-% ylim([-2 inf])
-% hold off
-% 
-% figure();
-% hold on
-% title('LSQ Fit Residuals')
-% plot(xdata,res_y,'*');
-% plot([xdata(1), xdata(end)],[0 0],'k-')
-% hold off
+figure();
+hold on
+plot(xdata,ydata,'b.')
+plot(xfit_conv,yfit,'-r')
+legend('Raw Data', 'LSQ Fit')
+xlabel('Energy (eV)')
+ylabel('PL Intensity (Arb. Units)')
+hold off
+
+figure();
+hold on
+plot(xdata,log(ydata),'b.')
+plot(xfit_conv,log(yfit),'-r')
+legend('Raw Data', 'LSQ Fit')
+xlabel('Energy (eV)')
+ylabel('Log PL Intensity (Arb. Units)')
+xlim([1.4 inf])
+ylim([-2 inf])
+hold off
+
+figure();
+hold on
+title('LSQ Fit Residuals')
+plot(xdata,res_y,'*');
+plot([xdata(1), xdata(end)],[0 0],'k-')
+hold off
 %%
 J = JACOBIAN;
 J = full(J);

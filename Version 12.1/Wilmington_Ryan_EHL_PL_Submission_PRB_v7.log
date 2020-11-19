@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/W32TeX) (preloaded format=pdflatex 2020.3.13)  21 APR 2020 10:51
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/W32TeX) (preloaded format=pdflatex 2020.3.13)  3 AUG 2020 10:47
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -75,8 +75,8 @@ File: aps4-2 2019/01/18/14:29:48 4.2c (https://journals.aps.org/revtex/ for doc
 umentation)
 Class revtex4-2 Info: RevTeX society APS selected on input line 37.
 )
-Class revtex4-2 Info: Selecting journal prb on input line 7583.
-Class revtex4-2 Info: APS journal PRB selected on input line 7584.
+Class revtex4-2 Info: Selecting journal prl on input line 7583.
+Class revtex4-2 Info: APS journal PRL selected on input line 7584.
 
 (c:/texlive/2019/texmf-dist/tex/latex/revtex/aps12pt4-2.rtx
 File: aps12pt4-2 2019/01/18/14:29:48 4.2c (https://journals.aps.org/revtex/ for
@@ -257,7 +257,14 @@ File: l3backend-pdfmode.def 2020-02-23 L3 backend support: PDF mode
 \l__kernel_color_stack_int=\count266
 \l__pdf_internal_box=\box64
 )
-No file Wilmington_Ryan_EHL_PL_Submission_PRB_v7.aux.
+(./Wilmington_Ryan_EHL_PL_Submission_PRB_v7.aux
+
+LaTeX Warning: Label `Gamma factor' multiply defined.
+
+
+LaTeX Warning: Label `PL Intensity' multiply defined.
+
+)
 \openout1 = `Wilmington_Ryan_EHL_PL_Submission_PRB_v7.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 41.
@@ -274,7 +281,7 @@ LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 41.
 LaTeX Font Info:    ... okay on input line 41.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 41.
 LaTeX Font Info:    ... okay on input line 41.
-(c:/texlive/2019/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+ (c:/texlive/2019/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count267
 \scratchdimen=\dimen152
@@ -301,121 +308,83 @@ Package caption Info: float package is loaded.
 Package caption Info: End \AtBeginDocument code.
 \openout3 = `Wilmington_Ryan_EHL_PL_Submission_PRB_v7Notes.bib'.
 
-<fig_fig1.png, id=1, 903.375pt x 451.9284pt>
-File: fig_fig1.png Graphic file (type png)
-<use fig_fig1.png>
-Package pdftex.def Info: fig_fig1.png  used on input line 130.
-(pdftex.def)             Requested size: 444.59857pt x 222.41916pt.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 131
+LaTeX Font Info:    Trying to load font information for U+msa on input line 109
 .
 
 (c:/texlive/2019/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 131
+LaTeX Font Info:    Trying to load font information for U+msb on input line 109
 .
 
 (c:/texlive/2019/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-) [1{c:/texlive/2019/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-
-LaTeX Warning: Reference `fig:schematic' on page 2 undefined on input line 135.
-
-
-[2 <./fig_fig1.png (PNG copy)>] [3]
+)
+<fig_fig1.png, id=1, 903.375pt x 451.9284pt>
+File: fig_fig1.png Graphic file (type png)
+<use fig_fig1.png>
+Package pdftex.def Info: fig_fig1.png  used on input line 135.
+(pdftex.def)             Requested size: 444.59857pt x 222.41916pt.
+ [1{c:/texlive/2019/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2 <./fig_fi
+g1.png (PNG copy)>]
+[3]
 <fig_DOS.png, id=25, 677.4108pt x 301.125pt>
 File: fig_DOS.png Graphic file (type png)
 <use fig_DOS.png>
-Package pdftex.def Info: fig_DOS.png  used on input line 163.
+Package pdftex.def Info: fig_DOS.png  used on input line 168.
 (pdftex.def)             Requested size: 468.0pt x 208.03377pt.
-
-
-LaTeX Warning: Reference `fig:DOS' on page 4 undefined on input line 168.
-
-[4 <./fig_DOS.png (PNG copy)>]
-<fig_fitwith&withoutL.png, id=29, 903.375pt x 451.9284pt>
+ [4 <./fig_DOS.png (PNG copy)>]
+<fig_fitwith&withoutL.png, id=29, 753.0534pt x 602.25pt>
 File: fig_fitwith&withoutL.png Graphic file (type png)
 <use fig_fitwith&withoutL.png>
-Package pdftex.def Info: fig_fitwith&withoutL.png  used on input line 197.
-(pdftex.def)             Requested size: 468.0pt x 234.12834pt.
-
-
-LaTeX Warning: Reference `fig:result_data' on page 5 undefined on input line 20
-3.
-
-<fig_pars.png, id=30, 489.5088pt x 602.25pt>
+Package pdftex.def Info: fig_fitwith&withoutL.png  used on input line 202.
+(pdftex.def)             Requested size: 468.0pt x 374.28252pt.
+<fig_pars.png, id=30, 301.125pt x 602.25pt>
 File: fig_pars.png Graphic file (type png)
 <use fig_pars.png>
-Package pdftex.def Info: fig_pars.png  used on input line 207.
-(pdftex.def)             Requested size: 234.0pt x 287.89125pt.
-
-LaTeX Warning: Reference `fig:pars' on page 5 undefined on input line 212.
-
-
-LaTeX Warning: Reference `fig:schematic' on page 5 undefined on input line 212.
-
-
-[5]
-<fig_npervalley+dipole.png, id=34, 489.5088pt x 602.25pt>
+Package pdftex.def Info: fig_pars.png  used on input line 212.
+(pdftex.def)             Requested size: 234.0pt x 468.01627pt.
+ [5] [6 <./fig_fitwith&withoutL.png (PNG copy)>]
+<fig_npervalley+dipole.png, id=37, 489.5088pt x 602.25pt>
 File: fig_npervalley+dipole.png Graphic file (type png)
 <use fig_npervalley+dipole.png>
-Package pdftex.def Info: fig_npervalley+dipole.png  used on input line 218.
+Package pdftex.def Info: fig_npervalley+dipole.png  used on input line 223.
 (pdftex.def)             Requested size: 234.0pt x 287.89125pt.
- [6 <./fig_fitwith&withoutL.png (PNG copy)>]
-
-LaTeX Warning: Reference `fig:n' on page 7 undefined on input line 224.
-
-[7 <./fig_pars.png (PNG copy)>] [8 <./fig_npervalley+dipole.png (PNG copy)>]
-
-LaTeX Warning: Reference `fig:n' on page 9 undefined on input line 239.
-
-[9]
-<fig_alphabetaCD.png, id=48, 828.2142pt x 602.25pt>
+ [7 <./fig_pars.png (PNG copy)>] [8 <./fig_npervalley+dipole.png (PNG copy)>] [
+9] [10]
+<fig_alphabetaCD.png, id=51, 828.2142pt x 602.25pt>
 File: fig_alphabetaCD.png Graphic file (type png)
 <use fig_alphabetaCD.png>
-Package pdftex.def Info: fig_alphabetaCD.png  used on input line 272.
+Package pdftex.def Info: fig_alphabetaCD.png  used on input line 277.
 (pdftex.def)             Requested size: 468.0pt x 340.31783pt.
-
-
-LaTeX Warning: Reference `fig:alphabetaCD' on page 10 undefined on input line 2
-77.
-
-<fermilevelvfluence.png, id=49, 421.575pt x 316.0608pt>
+<fermilevelvfluence.png, id=52, 421.575pt x 316.0608pt>
 File: fermilevelvfluence.png Graphic file (type png)
 <use fermilevelvfluence.png>
-Package pdftex.def Info: fermilevelvfluence.png  used on input line 281.
+Package pdftex.def Info: fermilevelvfluence.png  used on input line 286.
 (pdftex.def)             Requested size: 234.0pt x 175.4351pt.
-[10 <./fig_alphabetaCD.png (PNG copy)>]
-
-LaTeX Warning: Reference `fig:fermilevelvfluence' on page 11 undefined on input
- line 287.
-
-[11 <./fermilevelvfluence.png (PNG copy)>]
-<fig_nvsBGR.png, id=56, 421.575pt x 316.0608pt>
+ [11 <./fig_alphabetaCD.png (PNG copy)>] [12 <./fermilevelvfluence.png (PNG cop
+y)>]
+<fig_nvsBGR.png, id=59, 421.575pt x 316.0608pt>
 File: fig_nvsBGR.png Graphic file (type png)
 <use fig_nvsBGR.png>
-Package pdftex.def Info: fig_nvsBGR.png  used on input line 330.
+Package pdftex.def Info: fig_nvsBGR.png  used on input line 335.
 (pdftex.def)             Requested size: 234.0pt x 175.4351pt.
 
 No file Wilmington_Ryan_EHL_PL_Submission_PRB_v7.bbl.
-[12 <./fig_nvsBGR.png (PNG copy)>]
+[13 <./fig_nvsBGR.png (PNG copy)>]
 (./Wilmington_Ryan_EHL_PL_Submission_PRB_v7.aux)
 
-LaTeX Warning: There were undefined references.
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right .
-
+LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 5539 strings out of 480994
- 78052 string characters out of 5916047
- 328168 words of memory out of 5000000
- 21011 multiletter control sequences out of 15000+600000
- 538850 words of font info for 48 fonts, out of 8000000 for 9000
+ 5545 strings out of 480994
+ 78173 string characters out of 5916047
+ 328717 words of memory out of 5000000
+ 21013 multiletter control sequences out of 15000+600000
+ 539188 words of font info for 50 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 41i,7n,42p,1323b,355s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 41i,7n,42p,1323b,327s stack positions out of 5000i,500n,10000p,200000b,80000s
 <c:/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><c:/tex
 live/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><c:/texlive/2019
 /texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><c:/texlive/2019/texmf-di
@@ -427,11 +396,11 @@ pfb><c:/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/t
 exlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb><c:/texlive/201
 9/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb><c:/texlive/2019/texmf-d
 ist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on Wilmington_Ryan_EHL_PL_Submission_PRB_v7.pdf (12 pages, 12935
-10 bytes).
+Output written on Wilmington_Ryan_EHL_PL_Submission_PRB_v7.pdf (13 pages, 12223
+05 bytes).
 PDF statistics:
- 99 PDF objects out of 1000 (max. 8388607)
- 64 compressed objects within 1 object stream
+ 103 PDF objects out of 1000 (max. 8388607)
+ 67 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  41 words of extra memory for PDF output out of 10000 (max. 10000000)
 

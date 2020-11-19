@@ -145,10 +145,10 @@ end
 % %legend([p2(21), p2(20), p2(19), p2(18), p2(17), p2(16), p2(15), p2(14), p2(13), p2(12), p2(11), p2(10), p2(9), p2(8), p2(7), p2(6), p2(5), p2(4)],leg)
 % xlim([1.4 2.1])
 % ylim([-0.25 4.4])
-% ylabel('PL Intensity (arb.)')
+% ylabel('PL Intensity (arb. units)')
 % xlabel('Energy (eV)')
 % c = colorbar(gca);
-% c.Label.String = 'Power Density (kW/cm^2)';
+% c.Label.String = 'Power Density (kW cm^{-2})';
 % legend([p2(startfile)],'Model Fit')
 % hold off
 % 
@@ -169,11 +169,11 @@ end
 % 
 % xlim([1.4 2.1])
 % ylim([-0.25 4.4])
-% ylabel('PL Intensity (arb.)')
+% ylabel('PL Intensity (arb. units)')
 % xlabel('Energy (eV)')
 % legend([p2(startfile)],'Model Fit')
 % c = colorbar(gca);
-% c.Label.String = 'Power Density (kW/cm^2)';
+% c.Label.String = 'Power Density (kW cm^{-2})';
 % dim = [0.007 0.88 0.1 0.1];
 % str = {'(a)'};
 % annotation('textbox',dim,'String',str,'FitBoxToText','on','FontSize',20,'EdgeColor','none');
@@ -231,10 +231,10 @@ end
 %legend([p2(21), p2(20), p2(19), p2(18), p2(17), p2(16), p2(15), p2(14), p2(13), p2(12), p2(11), p2(10), p2(9), p2(8), p2(7), p2(6), p2(5), p2(4)],leg)
 xlim([1.4 2.1])
 ylim([-0.25 4.4])
-ylabel('PL Intensity (arb.)')
+ylabel('PL Intensity (arb. units)')
 xlabel('Energy (eV)')
 c = colorbar(gca);
-c.Label.String = 'Power Density (kW/cm^2)';
+c.Label.String = 'Power Density (kW cm^{-2})';
 legend([p2(startfile)],'Fit','FontSize',12)
 hold off
 
@@ -249,7 +249,7 @@ p2 = plot(Mxfit10(start_vec(i):end,filenum),Myfit10(start_vec(i):end,filenum)-3.
 
 xlim([1.44 2.07])
 ylim([0 0.95])
-ylabel('PL Intensity (arb.)')
+ylabel('PL Intensity (arb. units)')
 xlabel('Energy (eV)')
 legend('Raw Data (5.5 kW/cm^2)','Fit (No Broadening)','Location','NorthEast','FontSize',12)
 dim = [0.007 0.89 0.1 0.1];
@@ -273,7 +273,7 @@ p3 = plot(Mxfit(filenum,:),Myfit(filenum,:)-3.25,'r--','LineWidth',1.5);
 
 xlim([1.44 2.07])
 ylim([0 0.95])
-ylabel('PL Intensity (arb.)')
+ylabel('PL Intensity (arb. units)')
 xlabel('Energy (eV)')
 legend('Raw Data (5.5 kW/cm^2)','Fit (With Broadening)','Location','NorthEast','FontSize',12)
 hold off
@@ -302,32 +302,32 @@ axes('Position',[0.5 0.5 0.5 0.5],'xtick',[],'ytick',[],'box','on','handlevisibi
 h1 = axes('Position',[pad+offset 0.5+pad+offset 0.5-2*pad 0.5-2*pad]);
 par = 4;
 errorbar(power_vec(startfile:end),allentries(startfile:end,par+1),allentries(startfile:end,par+10),'-bo','LineWidth',2);
-ylabel('Alpha (arb.)')
-xlabel('Power Density (kW/cm^2)')
+ylabel('\alpha (eV^{-1})')
+xlabel('Power Density (kW cm^{-2})')
 xlim([2 5.75]) 
 set(gca,'FontWeight','bold','FontSize',fontsize,'box','off');
 
 h2 = axes('Position',[0.5+pad+offset 0.5+pad+offset 0.5-2*pad 0.5-2*pad]);
 par = 5;
 errorbar(power_vec(startfile:end),allentries(startfile:end,par+1),allentries(startfile:end,par+10),'-bo','LineWidth',2);
-ylabel('Beta (arb.)')
-xlabel('Power Density (kW/cm^2)')
+ylabel('\beta (eV^{-1})')
+xlabel('Power Density (kW cm^{-2})')
 xlim([2 5.75]) 
 set(gca,'FontWeight','bold','FontSize',fontsize,'box','off');
 
 h3 = axes('Position',[pad+offset pad+offset 0.5-2*pad 0.5-2*pad]);
 par = 7;
 errorbar(power_vec(startfile:end),allentries(startfile:end,par+1),allentries(startfile:end,par+10),'-bo','LineWidth',2);
-ylabel('C (arb.)')
-xlabel('Power Density (kW/cm^2)')
+ylabel('C (eV)')
+xlabel('Power Density (kW cm^{-2})')
 xlim([2 5.75]) 
 set(gca,'FontWeight','bold','FontSize',fontsize,'box','off');
 
 h4 = axes('Position',[0.5+pad+offset pad+offset 0.5-2*pad 0.5-2*pad]);
 par = 8;
 errorbar(power_vec(startfile:end),allentries(startfile:end,par+1),allentries(startfile:end,par+10),'-bo','LineWidth',2);
-ylabel('D (arb.)')
-xlabel('Power Density (kW/cm^2)')
+ylabel('D (eV)')
+xlabel('Power Density (kW cm^{-2})')
 xlim([2 5.75]) 
 set(gca,'FontWeight','bold','FontSize',fontsize,'box','off');
 dim = [0.007 0.89 0.1 0.1];
@@ -396,7 +396,7 @@ hold on
 plot(power_vec(startfile:end),Z(startfile:end,1),'-ro','LineWidth',2);
 plot(power_vec(startfile:end),Z(startfile:end,2),'-bo','LineWidth',2);
 legend('Electron Ef','Hole Ef','Location','East')
-xlabel('Power Density (kW/cm^2)')
+xlabel('Power Density (kW cm^{-2})')
 ylabel('Energy (eV)')
 hold off
 saveas(gcf,'fermilevelvfluence.png')
@@ -421,7 +421,7 @@ QE_errbar = scale*QE_errbar;
 % plot(power_vec(startfile:end),Z(startfile:end,3),'-ro','LineWidth',2);
 % plot(power_vec(startfile:end),Z(startfile:end,4),'-bo','LineWidth',2);
 % plot(power_vec(startfile:end),allentries(startfile:end,2),'-ko','LineWidth',2);
-% xlabel('Power Density (kW/cm^2)')
+% xlabel('Power Density (kW cm^{-2})')
 % ylabel('n_h (1e13/cm^2)')
 % legend('K-Valley','\Gamma Valley', 'Total','Location','East')
 % hold off
@@ -433,8 +433,8 @@ QE_errbar = scale*QE_errbar;
 % errorbar(power_vec(startfile:end),QE,QE_errbar,'-bo','LineWidth',2);
 % set(gca,'FontSize',fontsize)
 % %plot(power_vec(startfile:end),peakheight(startfile:21),'r^','LineWidth',2);
-% ylabel('|\mu|^2 (arb.)')
-% xlabel('Power Density (kW/cm^2)')
+% ylabel('|\mu|^2 (arb. units)')
+% xlabel('Power Density (kW cm^{-2})')
 % xlim([2 5.75]) 
 % set(gca,'FontSize',fontsize)
 % dim = [0.007 0.895 0.1 0.1];
@@ -465,20 +465,21 @@ figure('Renderer', 'painters', 'Position', [10 10 400 800])
 % yprime = allentries(startfile:end,par+1);
 % errorbar(x,yprime,allentries(startfile:end,par+10),'-bo','LineWidth',2);
 % ylabel('n (1e13/cm^2)')
-% xlabel('Power Density (kW/cm^2)')
+% xlabel('Power Density (kW cm^{-2})')
 % xlim([2 5.75]) 
 % set(gca,'FontSize',fontsize)
 
-h3 = axes('Position',[0.2 0.1 0.78 0.29],'box','off');
+h3 = axes('Position',[0.2 0.1 0.78 0.20],'box','off');
 
 hold on
 par = 1;
-plot(power_vec(startfile:end),Z(startfile:end,3),'-ro','LineWidth',2);
-plot(power_vec(startfile:end),Z(startfile:end,4),'-bo','LineWidth',2);
+plot(power_vec(startfile:end),Z(startfile:end,3),'-rs','LineWidth',2);
+plot(power_vec(startfile:end),Z(startfile:end,4),'-b^','LineWidth',2);
 %plot(power_vec(startfile:end),allentries(startfile:end,2),'-ko','LineWidth',2);
 errorbar(power_vec(startfile:end),allentries(startfile:end,par+1),allentries(startfile:end,par+10),'-ko','LineWidth',2);
 xlim([2 5.75])
-xlabel('Power Density (kW/cm^2)')
+ylim([0.2 5.3])
+xlabel('Power Density (kW cm^{-2})')
 ylabel('n_h (1e13/cm^2)')
 legend('K-Valley','\Gamma Valley', 'Total','Location','East','FontSize',12)
 hold off
@@ -488,7 +489,7 @@ h1 = axes('Position',[0.2 0.667+0.1 0.78 0.20],'box','off');
 par = 2;
 errorbar(power_vec(startfile:end),allentries(startfile:end,par+1),allentries(startfile:end,par+10),'-bo','LineWidth',2);
 ylabel('Temperature (K)')
-%xlabel('Power Density (kW/cm^2)')
+%xlabel('Power Density (kW cm^{-2})')
 xlim([2 5.75]) 
 set(gca,'FontWeight','bold','FontSize',fontsize,'box','off');
 
@@ -498,7 +499,7 @@ h2 = axes('Position',[0.2 0.38+0.1 0.78 0.20],'box','off');
 % hold on
 % errorbar(power_vec(startfile:end),allentries(startfile:end,par+1),allentries(startfile:end,par+10),'-bo','LineWidth',2);
 % ylabel('BGR (eV)')
-% xlabel('Power Density (kW/cm^2)')
+% xlabel('Power Density (kW cm^{-2})')
 % xlim([2 5.75]) 
 
 hold on
@@ -506,8 +507,8 @@ hold on
 errorbar(power_vec(startfile:end),QE,QE_errbar,'-bo','LineWidth',2);
 set(gca,'FontSize',fontsize)
 %plot(power_vec(startfile:end),peakheight(startfile:21),'r^','LineWidth',2);
-ylabel('|\mu|^2 (arb. units)')
-%xlabel('Power Density (kW/cm^2)')
+ylabel('|\mu|^2 (arb. units units)')
+%xlabel('Power Density (kW cm^{-2})')
 xlim([2 5.75]) 
 hold off
 set(gca,'FontWeight','bold','FontSize',fontsize,'box','off');
@@ -524,7 +525,7 @@ annotation('textbox',dim,'String',str,'FitBoxToText','on','FontSize',20,'EdgeCol
 hold off
 
 %saveas(gcf,'fig_pars.png')
-saveas(gcf,'fig_fig4_bold','svg')
+saveas(gcf,'fig_fig4_new_shapes','svg')
 
 %%
 
@@ -571,7 +572,7 @@ endfile = 15;
 x = allentries(startfile:endfile,2);
 z = allentries(startfile:endfile,4);
 
-a_bohr = 6.0e-8;
+a_bohr = 6.5e-8;
 bgr = @(n) 2.8*(((n*1e13).*a_bohr^2).^(1/3)).*(E_bind);
 nspace = linspace(2.5,5,1000);
 bgrvals = bgr(nspace);
@@ -605,8 +606,8 @@ saveas(gcf,'fig_nvsBGR.png')
 xprime = logspace(-3,1);
 
 yprime = -3.1*xprime.^(1/3);
-y2prime = -2.8*xprime.^(1/3);
-y3prime = -2.5*xprime.^(1/3);
+y2prime = -2.7*xprime.^(1/3);
+y3prime = -2.4*xprime.^(1/3);
 
 E0 = E_bind; %30.1588;
 
@@ -614,7 +615,7 @@ na_0squared = x*10^13*a_bohr^2;
 BGR_norm = -z./E0;
 
 semilogx(xprime,yprime,'-',xprime,y2prime,'-',xprime,y3prime,'-',na_0squared,BGR_norm,'*')
-legend('3.1','2.8','2.5','data')
+legend('C = 3.1','C = 2.8','C = 2.5','Fit Values')
 ylabel('E_{BGR}/E_{bind}')
 xlabel('na_{b}^2')
 ylim([-2 0])

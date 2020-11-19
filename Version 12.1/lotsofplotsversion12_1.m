@@ -197,8 +197,8 @@ axes('Position',[0.001 0.001 0.998 0.333],'xtick',[],'ytick',[],'box','on','hand
 h2 = axes('Position',[0.2 0.333+0.1 0.75 0.20],'box','off');
 par = 1;
 x = power_vec(startfile:end);
-yprime = allentries(startfile:end,par+1);
-plot(x,yprime,'-bo','LineWidth',2);
+yy = allentries(startfile:end,par+1);
+plot(x,yy,'-bo','LineWidth',2);
 ylabel('n (1e13/cm^2)')
 xlabel('Power Density (kW/cm^2)')
 %xlim([2 5.75]) 
